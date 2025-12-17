@@ -3,15 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Endless Runner</title>
+<title>Halaman Rahasia</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="game-container">
-    <div id="player"></div>
-    <div id="obstacle"></div>
+  <div id="login">
+    <h2>Masukkan Password</h2>
+    <input type="password" id="passwordInput" placeholder="Password">
+    <button onclick="checkPassword()">Masuk</button>
+    <p id="error" class="error-text"></p>
   </div>
-  <div id="score">Skor: 0</div>
+
+  <div id="secret" style="display:none;">
+    <h1 id="fakeText">Tidak ada apa-apa di sini</h1>
+  </div>
 
 <script src="script.js"></script>
 </body>
