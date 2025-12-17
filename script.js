@@ -20,5 +20,5 @@ function checkPassword() {
 
 // Tombol rahasia menuju link
 fakeText.addEventListener("click", () => {
-  window.location.href = "https://contoh-link-rahasia.com"; // ganti dengan link rahasia
+  window.location.href = "https://share.google/6mLQAy6Ju9rgJGYrq"; // ganti dengan link rahasia
 });
