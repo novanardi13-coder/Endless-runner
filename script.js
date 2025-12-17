@@ -1,58 +1,24 @@
-const player = document.getElementById("player");
-const obstacle = document.getElementById("obstacle");
-const scoreDisplay = document.getElementById("score");
-let isJumping = false;
-let score = 0;
+// Password yang benar
+const correctPassword = "13579"; 
 
-document.addEventListener("keydown", (e) => {
-  if (e.code === "Space") jump();
+// Ambil elemen
+const loginDiv = document.getElementById("login");
+const secretDiv = document.getElementById("secret");
+const errorText = document.getElementById("error");
+const fakeText = document.getElementById("fakeText");
+
+// Fungsi cek password
+function checkPassword() {
+  const input = document.getElementById("passwordInput").value;
+  if(input === correctPassword) {
+    loginDiv.style.display = "none";
+    secretDiv.style.display = "block";
+  } else {
+    errorText.textContent = "Password salah!";
+  }
+}
+
+// Tombol rahasia menuju link
+fakeText.addEventListener("click", () => {
+  window.location.href = "https://contoh-link-rahasia.com"; // ganti dengan link rahasia
 });
-
-function jump() {
-  if (isJumping) return;
-  isJumping = true;
-  let jumpHeight = 0;
-  const upInterval = setInterval(() => {
-    if (jumpHeight >= 150) {
-      clearInterval(upInterval);
-      const downInterval = setInterval(() => {
-        if (jumpHeight <= 0) {
-          clearInterval(downInterval);
-          isJumping = false;
-        }
-        jumpHeight -= 10;
-        player.style.bottom = jumpHeight + "px";
-      }, 20);
-    }
-    jumpHeight += 10;
-    player.style.bottom = jumpHeight + "px";
-  }, 20);
-}
-
-function moveObstacle() {
-  let obstaclePosition = 600;
-  const obstacleInterval = setInterval(() => {
-    if (obstaclePosition < -50) {
-      obstaclePosition = 600;
-      score++;
-      scoreDisplay.textContent = "Skor: " + score;
-    }
-    obstaclePosition -= 10;
-    obstacle.style.right = obstaclePosition + "px";
-
-    // Cek tabrakan
-    const playerBottom = parseInt(player.style.bottom);
-    if (
-      obstaclePosition < 100 &&
-      obstaclePosition > 50 &&
-      playerBottom < 50
-    ) {
-      alert("Game Over! Skormu: " + score);
-      score = 0;
-      scoreDisplay.textContent = "Skor: 0";
-      obstaclePosition = 600;
-    }
-  }, 20);
-}
-
-moveObstacle();
